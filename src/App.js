@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Content from './Content';
+import Sidebar from './Sidebar';
 
 class App extends Component {
+  state = {
+      show: true
+  }
+
+  toggleSidebar = () => {
+    this.state.show ? this.setState({show: false}) : this.setState({show: true})
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="container">
+         {this.state.show ? <Sidebar toggleSidebar={this.toggleSidebar}/> : <button className="show" onClick={this.toggleSidebar}>Show</button>}
+          <Content />
+        </div>
+
       </div>
     );
   }
